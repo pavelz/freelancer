@@ -1,7 +1,6 @@
 class MessagesController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create]
   before_action :set_message, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :authenticate_user! , only: [:new, :create]
   # GET /messages
   # GET /messages.json
   def index
@@ -26,16 +25,11 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
-    redirect_to root_path
-#    respond_to do |format|
-      #if @message.save
-        #format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        #format.json { render :show, status: :created, location: @message }
-      #else
-        #format.html { render :new }
-        #format.json { render json: @message.errors, status: :unprocessable_entity }
-      #end
-    #end
+    if @message.save
+      render plain: "ok", status: :ok
+    else
+      render plain: "error", status: :internal_server_error
+    end
   end
 
   # PATCH/PUT /messages/1

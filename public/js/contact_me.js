@@ -12,6 +12,7 @@ $(function() {
       var email = $("input#email").val();
       var phone = $("input#phone").val();
       var message = $("textarea#message").val();
+      var auth_token = $("input[name=authenticity_token]").val();
       var firstName = name; // For Success/Failure Message
       // Check for white space in name for Success/Fail message
       if (firstName.indexOf(' ') >= 0) {
@@ -23,6 +24,7 @@ $(function() {
         url: "/messages",
         type: "POST",
         data: {
+          "authenticity_token": auth_token,
           "message[name]": name,
           "message[phone]": phone,
           "message[email]": email,

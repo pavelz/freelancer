@@ -1,24 +1,37 @@
-<p id="notice"><%= notice %></p>
+<!-- Contact Section -->
+<section class="page-section" id="contact">
+  <div class="container">
 
-<p>
-  <strong>Name:</strong>
-  <%= @message.name %>
-</p>
+    <!-- Contact Section Heading -->
+      <% if current_user %>
+        <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @message.email %>
-</p>
+        <p>
+          <strong>Name:</strong>
+          <%= @message.name %>
+        </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @message.phone %>
-</p>
+        <p>
+          <strong>Email:</strong>
+          <%= @message.email %>
+        </p>
 
-<p>
-  <strong>Message:</strong>
-  <%= @message.message %>
-</p>
+        <p>
+          <strong>Phone:</strong>
+          <%= @message.phone %>
+        </p>
 
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
+        <p>
+          <strong>Message:</strong>
+          <%= @message.message %>
+        </p>
+        <%= link_to 'Edit', edit_message_path(@message) %> |
+        <%= link_to 'Back', messages_path %>
+      <% else %>
+
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
+        thanks for sending the message
+      </h2>
+      <% end %>
+  </div>
+</section>
